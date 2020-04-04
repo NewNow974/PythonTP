@@ -1,16 +1,19 @@
+from noeud import Noeud
+
+
 class Lien:
     """Class Lien"""
 
     def __init__(self, noeud1, noeud2, distance):
         """Initialize the value."""
-        self._identifiant=0
+        self.__identifiant= str(noeud1) +"--"+ str(noeud2)
         self.__distance=distance
         self.__noeud1=noeud1
         self.__noeud2=noeud2
 
 
-    def getIdentifiant(self):
-        return self._identifiant
+    def getIdentifiantLien(self):
+        return self.__identifiant
 
     def getDistance(self):
         return self.__distance
@@ -22,12 +25,11 @@ class Lien:
         return self.__noeud2
 
     def setIdentifiant(self, identifiant):
-        self._identifiant=identifiant
+        self.__identifiant=identifiant
 
 
     def __str__(self):
-        print("L'identifiant est : " + str(self.getIdentifiant()))
+        print("L'identifiant du lien est : " + str(self.getIdentifiantLien()))
         print("La distance du lien est : " + str(self.getDistance()))
 
-Lien1 = Lien(1,1, 10)
-Lien1.__str__()
+

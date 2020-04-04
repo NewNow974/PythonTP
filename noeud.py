@@ -1,40 +1,37 @@
-from lien import Lien
 
-class Noeud(Lien):
+
+class Noeud:
     """Class Noeud"""
     id = 1
 
     """Initialize the value."""
-    def __init__(self):
-        self._identifiantNoeud=self.getId()
-        self._liste=[]
+    def __init__(self,idNoeud):
+        """self.__identifiantNoeud=self.getId()"""
+        self.__identifiantNoeud=idNoeud
+        self.__liste=[]
 
-        Noeud.id+=1
+
 
     """Getters et Setterse"""
     def getIdentifiantNoeud(self):
-        return self._identifiantNoeud
+        return self.__identifiantNoeud
 
     def setIdentifiantNoeud(self, identifiantNoeud):
-        self._identifiantNoeud=identifiantNoeud
-
-    def getListe(self):
-        for element in self._liste:
-            print(element)
-        """return self.__liste"""
+        self.__identifiantNoeud=identifiantNoeud
 
 
     """Les méthode"""
     def __str__(self):
-        print("L'identifiant du Noeud est : " + str(self._identifiantNoeud))
+        print("L'identifiant du Noeud est : " + str(self.__identifiantNoeud))
 
-    def affichageIdentifiantLien(self):
-        print("Liste des liens : " + str(self.getListe()))
+    """def affichageIdentifiantLien(self):
+        print("Liste des liens : " + str(self.getListe()))"""
 
     def ajoutIdentifiantLien(self, identifiant):
-        self._liste.append(identifiant)
+        self.__liste.append(identifiant)
 
-
+    def affichageIdentifiantLien(self):
+        print(self.__liste)
 
 
     @classmethod
@@ -42,6 +39,3 @@ class Noeud(Lien):
         return Noeud.id
 
 
-noeud1= Noeud()
-noeud1.__str__()
-noeud1.affichageIdentifiantLien()

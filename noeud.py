@@ -1,41 +1,16 @@
-
-
 class Noeud:
-    """Class Noeud"""
-    id = 1
+    def __init__(self, identifiantNoeud):
+        self.__id = identifiantNoeud
+        self.__connected_link = []
 
-    """Initialize the value."""
-    def __init__(self,idNoeud):
-        """self.__identifiantNoeud=self.getId()"""
-        self.__identifiantNoeud=idNoeud
-        self.__liste=[]
-
-
-
-    """Getters et Setterse"""
-    def getIdentifiantNoeud(self):
-        return self.__identifiantNoeud
-
-    def setIdentifiantNoeud(self, identifiantNoeud):
-        self.__identifiantNoeud=identifiantNoeud
-
-
-    """Les méthode"""
     def __str__(self):
-        print("L'identifiant du Noeud est : " + str(self.__identifiantNoeud))
+        print(self.__id)
 
-    """def affichageIdentifiantLien(self):
-        print("Liste des liens : " + str(self.getListe()))"""
+    def show_links_id(self):
+        print(self.__connected_link)
 
-    def ajoutIdentifiantLien(self, identifiant):
-        self.__liste.append(identifiant)
+    def ajouterIdentifiantLien(self, identify):
+        self.__connected_link.append(identify)
 
-    def affichageIdentifiantLien(self):
-        print(self.__liste)
-
-
-    @classmethod
-    def getId(cls):
-        return Noeud.id
-
-
+    def get_id(self):
+        return self.__id

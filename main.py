@@ -1,33 +1,57 @@
-
-from queue import PriorityQueue
-from lien import Lien
-from noeud import Noeud
 from graphe import Graphe
+from grapheoriente import GrapheOriente
+from noeud import Noeud
+from lien import Lien
 
 import csv
 
-"Lire le fichier"
+def create_graph(graph_id, path_file) :
+    with open(path_file, newline='') as csv_file:
+        reader = csv.reader(csv_file, delimiter='\t')
+
+        Graphe1 = GrapheOriente(graph_id)
+
+        nb_node = next(reader)
+
+        for i in range(1, int(nb_node[0])+1) :
+            Graphe1.ajouterNoeud(Noeud(i))
+
+        for row in reader:
+            Graphe1.ajouterLien(Lien(int(row[0]), int(row[1]), float(row[2])))
+
+        return Graphe1
 
 
-def creationGraphe (idGraphe, fichier):
-    with open(fichier) as csv_file:
-        Graph = Graphe(idGraphe)
-
-        f_csv = csv.reader(csv_file, delimiter='\t')
-
-        header = next(f_csv)
-
-        for i in range(int(header[0])):
-            node = Noeud(i+1)
-            Graph.ajouterNoeud(node)
-
-        for ligne in f_csv:
-
-            Graph.ajouterLien(Lien(ligne[0], ligne[1], ligne[2]))
-
-    return Graph
+#def dijkstra(id_node_source, id_node_dest):
+#    nodes_list = []
 
 
-graph=creationGraphe(1, "fileGraph1.csv")
+noeud1 = Noeud(11)
+noeud2 = Noeud(22)
+noeud3 = Noeud(33)
+noeud4 = Noeud(4444)
 
-graph.__str__()
+lien1 = Lien(11, 22, 10)
+lien2 = Lien(22, 33, 11)
+
+lien4 = Lien(11,4444,11)
+
+
+g1 = GrapheOriente(10)
+g1.ajouterNoeud(noeud1)
+
+g1.ajouterNoeud(noeud2)
+g1.ajouterNoeud(noeud3)
+g1.ajouterNoeud(noeud4)
+g1.ajouterLien(lien1)
+g1.ajouterLien(lien2)
+g1.ajouterLien(lien4)
+
+print("Prochain Noeud")
+print(g1.obtenirProchainsNoeuds(22))
+print("===========================================================")
+graph = create_graph(1, "fileGraph1.csv")
+print("Liste prochaine Noeuds : " + str(graph.obtenirProchainsNoeuds(1)))
+
+
+graph.__str__() #affichage liste

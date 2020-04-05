@@ -79,40 +79,4 @@ class Graphe:
                 return P, d[keyMin]
         return P, d
 
-    def dijkstra(self, sourceNode, destNode):
 
-        assert sourceNode in self._dic_Noeuds, 'such source node does not exist'
-        assert destNode in self._dic_Noeuds, 'such destination node does not exist'
-
-        inf = float('inf')
-
-        distances = {node: inf for node in self._dic_Noeuds}
-        previous_nodes = {node: None for node in self._dic_Noeuds}
-        distances[sourceNode] = 0
-
-        nddict = self._dic_Noeuds.copy()
-        nodes = set()
-        for nd in nddict.keys():
-            nodes.add(nd)
-
-        while nodes:
-
-            current_node = min(nodes, key=lambda node: distances[node])
-            if distances[current_node] == inf:
-                break
-
-            for neighbour, cost in self.obtenirProchainsNoeuds2(current_node).items():
-                alternative_route = distances[current_node] + cost
-                if alternative_route < distances[int(neighbour)]:
-                    distances[int(neighbour)] = alternative_route
-                    previous_nodes[int(neighbour)] = current_node
-
-            nodes.remove(current_node)
-
-        path, current_node = deque(), destNode
-        while previous_nodes[current_node] is not None:
-            path.appendleft(current_node)
-            current_node = previous_nodes[current_node]
-        if path:
-            path.appendleft(current_node)
-        return path
